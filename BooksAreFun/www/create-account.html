@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Books are Fun mobile app</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+
+	<script type="text/javascript" src="https://www.secured-server.biz/scripts/validation.js"></script>
+
+	<script language="JavaScript" type="text/JavaScript">
+		<!--
+		function validateForm(theForm) {	
+			//strip any non-digits from the cust Acct number
+			
+			/*var custNum = theForm.customerAccountNumber.value.replace(/[^0-9]/g, '');
+
+		    if (custNum.length < 6){
+		      alert("Please enter at least 6 numbers in the Create a 6 Digit User ID field.");
+		      theForm.customerAccountNumber.focus();
+		      return false;
+		    }
+		    if (custNum.length > 6){
+		      alert("Please enter at most 6 numbers in the Create a 6 Digit User ID field.");
+		      theForm.customerAccountNumber.focus();
+		      return false;
+		    }*/
+
+			if(!Valid(theForm.billFirstName,"First Name",1,40,"true",alphaNumeric,alphaNumericDesc)){ return false; }
+			if(!Valid(theForm.billLastName,"Last Name",1,40,"true",alphaNumeric,alphaNumericDesc)){ return false; }
+			if(!Valid(theForm.billAddress,"Address",1,40,"true",alphaNumeric,alphaNumericDesc)){ return false; }
+			if(!Valid(theForm.billCity,"City",1,40,"true",alphaNumeric,alphaNumericDesc)){ return false; }
+			if(!Valid(theForm.billState,"State",2,2,"true",alpha,alphaDesc)){ return false; }
+			if(!Valid(theForm.billZip,"Zip",5,10,"true",alphaNumeric,alphaNumericDesc)){ return false; }
+			if(!Valid(theForm.billPhone,"Phone",10,20,"true",alphaNumeric,alphaNumericDesc)){ return false; }
+			if(!Valid(theForm.billEmail,"Email",3,80,"true",alphaNumeric,alphaNumericDesc)){ return false; }
+			if(!Valid(theForm.custom3,"School Name",3,80,"true",alphaNumeric,alphaNumericDesc)){ return false; }
+			if(!Valid(theForm.branchNumber,"Rep Number / Rep Code",1,6,"true",alphaNumeric,alphaNumericDesc)){ return false; }
+			if(!Valid(theForm.password,"Password",8,40,"true",alphaNumeric,alphaNumericDesc)){ return false; }
+			var ucfilter = /([A-Z])+/;
+			var lcfilter = /([a-z])+/;
+			var nmfilter = /([0-9])+/;
+			var nsfilter = /\ +/;
+			if(!ucfilter.test(theForm.password.value)){
+				alert("Password must contain at least one upper case letter.");
+				theForm.password.focus();
+				return false;
+			}else if(!lcfilter.test(theForm.password.value)){
+				alert("Password must contain at least one lower case letter.");
+				theForm.password.focus();
+				return false;
+			}else if(!nmfilter.test(theForm.password.value)){
+				alert("Password must contain at least one number.");
+				theForm.password.focus();
+				return false;
+			}else if(nsfilter.test(theForm.password.value)){
+				alert("Password must not contain spaces.");
+				theForm.password.focus();
+				return false;
+			}		
+			if(!Match(theForm.password,"Password",theForm.password2,"Confirm Password")){ return false; }
+			if(!Valid(theForm.securityAnswer,"Security Answer",1,20,"true",alphaNumeric,alphaNumericDesc)){ return false; }
+			theForm.customerAccountNumber.value=custNum;
+			}
+
+		//-->
+	</script>
+
+
+</head>
+<body>
+
+
+
+<section class="content">
+
+
+	<header class="header">
+		<p>Create Account</p>
+	</header>
+	
+
+		<form action="." method="POST" onSubmit="return validateForm(this);">
+		<input type=hidden name=command id=command value="doSignup">
+		<table class="tableFormat">
+				<tbody class="tableBody">
+					<tr>
+						<td>First Name</td>
+						<td><input type="text" class="textField" name="billFirstName" id="billFirstName"></td>
+					</tr>
+					<tr>
+						<td>Last Name</td>
+						<td><input type="text" class="textField"  name="billLastName" id="billLastName"></td>
+					</tr>
+					<tr>		
+						<td>Billing Street</td>
+						<td><input type="text" class="textField" name="billAddress" id="billAddress"></td>
+					</tr>
+					<tr>
+						<td>Billing City</td>
+						<td><input type="text" class="textField" name="billCity" id="billCity"></td>
+					</tr>
+					<tr>
+						<td>Billing State</td>
+						<td>
+							<select name="billState" id="billState">
+								<option>[state]</option>
+									<option value=" " selected="selected"> </option>
+							        <option value="AK">AK </option>
+							        <option value="AL">AL </option>
+							        <option value="AR">AR </option>
+							        <option value="AZ">AZ </option>
+							        <option value="CA">CA </option>
+							        <option value="CO">CO </option>
+							        <option value="CT">CT </option>
+							        <option value="DC">DC </option>
+							        <option value="DE">DE </option>
+							        <option value="FL">FL </option>
+							        <option value="GA">GA </option>
+							        <option value="HI">HI </option>
+							        <option value="IA">IA </option>
+							        <option value="ID">ID </option>
+							        <option value="IL">IL </option>
+							        <option value="IN">IN </option>
+							        <option value="KS">KS </option>
+							        <option value="KY">KY </option>
+							        <option value="LA">LA </option>
+							        <option value="MA">MA </option>
+							        <option value="MB">MB </option>
+							        <option value="MD">MD </option>
+							        <option value="ME">ME </option>
+							        <option value="MI">MI </option>
+							        <option value="MN">MN </option>
+							        <option value="MO">MO </option>
+							        <option value="MS">MS </option>
+							        <option value="MT">MT </option>
+							        <option value="NC">NC </option>
+							        <option value="ND">ND </option>
+							        <option value="NE">NE </option>
+							        <option value="NH">NH </option>
+							        <option value="NJ">NJ </option>
+							        <option value="NM">NM </option>
+							        <option value="NS">NS </option>
+							        <option value="NV">NV </option>
+							        <option value="NY">NY </option>
+							        <option value="OH">OH </option>
+							        <option value="OK">OK </option>
+							        <option value="OR">OR </option>
+							        <option value="PA">PA </option>
+							        <option value="RI">RI </option>
+							        <option value="SC">SC </option>
+							        <option value="SD">SD </option>
+							        <option value="TN">TN </option>
+							        <option value="TX">TX </option>
+							        <option value="UT">UT </option>
+							        <option value="VA">VA </option>
+							        <option value="VT">VT </option>
+							        <option value="WA">WA </option>
+							        <option value="WI">WI </option>
+							        <option value="WV">WV </option>
+							        <option value="WY">WY </option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Billing Zip</td>
+						<td><input type="text" class="textField" name="billZip" id="billZip" maxlength="5"></td>
+					</tr>
+					<tr>
+						<td>Phone Number</td>
+						<td><input type="text" class="textField" name="billPhone" id="billPhone"></td>
+					</tr>
+					<tr>
+						<td>Rep Number / Code</td>
+						<td><input type="text" class="textField" name="branchNumber" id="branchNumber" maxlength="6"></td>
+					</tr>
+					<tr>
+						<td>School or Business</td>
+						<td><input type="text" class="textField" name="custom3" id="custom3"></td>
+					</tr>
+					<tr>
+						<td>E-mail</td>
+						<td><input type="text" class="textField" name="billEmail" id="billEmail"></td>
+					</tr>
+					<tr>
+						<td>Password</td>
+						<td><input type="password" class="textField" name="password" id="password"></td>
+					</tr>
+				</tbody>
+				<tfoot class="tableFooter">
+					<tr>
+						<td colspan="2">
+							<button type="submit" id="submitButton">Create Account</button>
+						</td>
+					</tr>
+				</tfoot>	
+		</table>
+		</form>
+
+
+
+
+	<section class="copyright">
+		<p><a href="#">Contact Us</a> | <a href="http://www.booksarefun.com/terms-and-conditions">Terms and Conditions</a></p>
+		<p>Copyright Books Are Fun <script type="text/javascript">document.write(new Date().getFullYear());</script></p>			
+	</section>
+
+</section>
+
+
+
+
+
+</body>
+</html>

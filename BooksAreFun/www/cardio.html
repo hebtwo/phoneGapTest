@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Books are Fun mobile app</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+
+	
+
+
+</head>
+<body>
+
+	<form method="POST" action="." name="jumpHome" id="jumpHome">
+  		<input type=hidden name=command value=jumpHome>
+	</form>
+	<form method="POST" action="." name="logout" id="logout">
+  		<input type=hidden name=command value=logout>
+	</form>
+	<form name="jumpEdit" id="jumpEdit" method="POST" action=".">
+  		<input type=hidden name=command id=command value="jumpEdit">
+  		<input type=hidden name=customerAccountNumber id=customerAccountNumber value="$customerAccountNumber">
+	</form>
+	<form name="jumpHistory" id="jumpHistory" method="POST" action=".">
+  		<input type=hidden name=command id=command value="jumpHistory">
+  		<input type=hidden name=customerAccountNumber id=customerAccountNumber value="$customerAccountNumber">
+	</form>
+
+
+	<section class="screenBorder">
+	<section class="content">
+		<header class="header">
+			<p>Make a Payment</p>
+		</header>
+
+
+
+		<footer class="footer">
+			<a href="javascript:document.forms['jumpHome'].submit()" class="icon" id="iconHome"></a>
+		<a href="javascript:document.forms['jumpHistory'].submit()" class="icon" id="iconHistory"></a>
+		<a href="javascript:document.forms['jumpEdit'].submit()" class="icon" id="iconAccount"></a>
+		<a href="javascript:document.forms['logout'].submit()" class="icon" id="iconLogout"></a>
+		</footer>
+	</section>	
+	</section>
+
+
+
+
+</body>
+</html>

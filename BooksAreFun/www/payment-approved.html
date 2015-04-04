@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Books are Fun mobile app</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+
+	
+
+
+</head>
+<body>
+
+	<form name="jumpPayment" id="jumpPayment" method="POST" action=".">
+		<input type=hidden name=command id=command value="jumpPayment">
+	  	<input type=hidden name=customerAccountNumber id=customerAccountNumber value="$customerAccountNumber">
+	</form>
+	<form method="POST" action="." name="jumpHome" id="jumpHome">
+	 	<input type=hidden name=command value=jumpHome>
+	</form>
+	<form method="POST" action="." name="logout" id="logout">
+	 	<input type=hidden name=command value=logout>
+	</form>
+	<form name="jumpEdit" id="jumpEdit" method="POST" action=".">
+		<input type=hidden name=command id=command value="jumpEdit">
+		<input type=hidden name=customerAccountNumber id=customerAccountNumber value="$customerAccountNumber">
+	</form>
+	
+
+
+<section class="content">
+	<header class="header">
+		<p>Make a Payment</p>
+	</header>
+
+	<table class="tableApproved">
+		<tbody>
+			<tr>
+				<td><p>Thank you!</p></td>
+			</tr>	
+			<tr>
+				<td class="acceptText">
+					<p>Payment approved!</p>
+				</td>
+			</tr>
+			<tr>
+				<td><p class="copyright">Below are your payment details:</p></td>
+			</tr>
+			<tr>
+				<td>
+					<table class="tableDetails">
+						<tr>
+							<td>Payment Date: </td>
+							<td>$paymentDate</td>
+						</tr>
+						<tr>
+							<td>First Name: </td>
+							<td>$billFirstName</td>
+						</tr>
+						<tr>
+							<td>Last Name: </td>
+							<td>$billLastName</td>
+						</tr>
+						<tr>
+							<td>Rep code: </td>
+							<td>$branchNumber</td>
+						</tr>
+						<tr>
+							<td>Customer #: </td>
+							<td>$customerAccountNumber</td>
+						</tr>
+						<tr>
+							<td>Amount Paid: </td>
+							<td>$$totalAmount</td>
+						</tr>
+						<tr>
+							<td>Credit Card #</td>
+							<td>$creditCardNumber</td>
+						</tr>
+						<tr>
+							<td>Confirmation #: </td>
+							<td>$invoiceNumber</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot class="tableFooter">
+			<tr>
+				<td><p class="copyright">Now that you've paid for your items, don't forget to fill ou the credit card slip with your Confirmation #</p></td>
+			</tr>
+			<tr>
+				<td><p class="copyright">A copy of your receipt has been e-mailed to you.</p></td>
+			</tr>
+		</tfoot>
+	</table>
+
+
+
+
+	<footer class="footer">
+		<a href="javascript:document.forms['jumpHome'].submit()" class="icon" id="iconHome"></a>
+		<a href="javascript:document.forms['jumpPayment'].submit()" class="icon" id="iconPayment"></a>
+		<a href="javascript:document.forms['jumpEdit'].submit()" class="icon" id="iconAccount"></a>
+		<a href="javascript:document.forms['logout'].submit()" class="icon" id="iconLogout"></a>
+	</footer>
+</section>
+
+
+
+
+</body>
+</html>

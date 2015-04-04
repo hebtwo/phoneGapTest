@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Books are Fun mobile app</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+
+	<script type="text/javascript" language="javaScript" src="https://www.secured-server.biz/scripts/validation.js"></script> 
+
+	<script type="text/javascript">
+
+		function init(){
+			newCard = false;
+			populateCreditCard();
+		}
+
+
+		//Auto populate expiration years for credit card form
+		
+		function populateYear(){
+			
+			var year;
+			
+			// Add default month object to drop down
+			yearOption = document.createElement("option");
+			yearOption.setAttribute("id", "year");
+			yearOption.setAttribute("value", "null");
+			yearOption.appendChild(document.createTextNode("Year"));
+			document.getElementById("expireYear").appendChild(yearOption);
+			
+			// Populate expiration year selection objects (current year through year + 20)
+			for (var x = 0; x < 20; x++) {
+				year = new Date().getFullYear() + x;
+				yearOption = document.createElement("option");
+				yearOption.setAttribute("id", year);
+				yearOption.setAttribute("value", year);
+				yearOption.appendChild(document.createTextNode(year));
+				document.getElementById("expireYear").appendChild(yearOption);
+			}
+			
+		}
+
+		
+		// Determine whether a saved credit card is present and autopopulate, else place a blank text field
+		
+		function populateCreditCard(){
+			var creditCardNumber = "************5858"
+			var expireMonth = "05";
+			var expireYear = "2020";
+
+			// Create new credit card text field object
+			textField = document.createElement("input"); // Create new input element
+			textField.setAttribute("type", "text"); // Add attributes
+			textField.setAttribute("id", "newCardNum");
+			textField.setAttribute("name", "creditCardNumber");
+			textField.setAttribute("maxlength", "16");
+			
+
+			if(creditCardNumber == "$creditCardNumber"){ // If no credit card number is present
+				document.getElementById("newCardSpan").appendChild(textField); // Add 'new credit card' field to page
+			}else{ // If a credit card number is saved
+				
+				// Create new drop down menu object	
+				var creditCardDropDown = document.createElement("select");
+				creditCardDropDown.setAttribute("id", "creditCardNumber");
+				creditCardDropDown.setAttribute("name", "creditCardNumber");
+				creditCardDropDown.setAttribute("onchange", "checkNewCard()");
+				document.getElementById("newCardSpan").appendChild(creditCardDropDown);
+				
+				// Create option objects for drop down menu
+				var creditCardDropDownOption = document.createElement("option");
+				creditCardDropDownOption.setAttribute("id", "savedCardNumber");
+				creditCardDropDownOption.setAttribute("name", "creditCardNumber");
+				creditCardDropDownOption.setAttribute("value", creditCardNumber);
+				creditCardDropDownOption.appendChild(document.createTextNode(creditCardNumber));
+				document.getElementById("creditCardNumber").appendChild(creditCardDropDownOption);
+
+				creditCardDropDownOption = document.createElement("option");
+				creditCardDropDownOption.setAttribute("id", "newCard");
+				creditCardDropDownOption.setAttribute("value", "newCard");
+				creditCardDropDownOption.appendChild(document.createTextNode("[Enter new card]"));
+				document.getElementById("creditCardNumber").appendChild(creditCardDropDownOption);				
+				
+				// Select the correct expiration month
+				document.getElementById(expireMonth).selected = true;
+				document.getElementById(expireYear).selected = true;
+				
+
+
+			}
+
+
+		}
+
+
+
+		//Allow for user to select existing credit card or enter a new one in drop down list
+
+		function checkNewCard(){
+			if(document.getElementById("creditCardNumber").options[document.getElementById("creditCardNumber").selectedIndex].value == "newCard"){ // If 'new credit card' is selected 
+				var x = document.getElementById("creditCardNumber")
+				document.getElementById("newCardSpan").replaceChild(textField, x); // Replace drop down with text field
+				newCard = true;
+				document.getElementById("saveCardBox").style.visibility = "visible"; // Show 'save credit card' box
+				document.getElementById("month").selected = true; // reset month selector
+				document.getElementById("year").selected = true; // reset year selector
+			}
+		}
+
+
+	
+
+	</script>
+
+	<script type="text/javascript" language="javaScript">
+		function isDefined(variable){
+			return (!(!( variable||false )))
+		}
+
+		function validateForm(theForm){
+			document.getElementById("Submit1").disabled=true;  
+
+			if(!Valid(theForm.paymentAmount, "Amount", 4, 7, "true", numbers + ".", "numbers and a decimal")){ 
+		  		document.getElementById("Submit1").disabled=false;  
+				return false; 
+			}
+		  	if(!ValidAmount(theForm.paymentAmount, "Amount")){ 
+		  		document.getElementById("Submit1").disabled=false;  
+				return false; 
+			}
+		  	if(theForm.paymentAmount.value < 0.01){
+		        alert("Please enter an amount greater than zero.");
+		        theForm.paymentAmount.focus();
+				document.getElementById("Submit1").disabled=false;  
+		        return false;
+		  	}
+		  	if(!Valid(theForm.creditCardNumber,"Credit Card Number",14,16,"true",numbers+"*",numbersDesc)){ 
+				document.getElementById("Submit1").disabled=false;  
+				return false; 
+			}
+			if(!Valid(theForm.expireMonth,"Expiration Month",2,2,"true",numbers,numbersDesc)){ 
+				document.getElementById("Submit1").disabled=false;  
+				return false; 
+			}
+			if(!Valid(theForm.expireYear,"Expiration Year",4,4,"true",numbers,numbersDesc)){ 
+				document.getElementById("Submit1").disabled=false;  
+				return false; 
+			}
+			var now = new Date();
+			var expDate = new Date();
+			expDate.setFullYear(theForm.expireYear.value, eval(theForm.expireMonth.value - 1), now.getDate());
+			var daysBack = expDate.getTime() - now.getTime();
+			if(daysBack < 0){
+				alert("Card has expired.  Please correct the expiry date.");
+				theForm.expireMonth.focus();
+				document.getElementById("Submit1").disabled=false;  
+				return false;
+			}
+			if(!Valid(theForm.cvvCode,"Security Code",3,4,"true",numbers,numbersDesc)){ 
+				document.getElementById("Submit1").disabled=false;  
+				return false; 
+			}
+			if(!theForm.iAgree.checked){
+		        alert("You must agree to the terms before proceeding.");
+		    	theForm.iAgree.focus();
+				document.getElementById("Submit1").disabled=false;  
+		        return false;
+		  	}
+		  	document.getElementById("Submit1").disabled=true;  
+
+		}
+
+	</script> 
+
+
+
+</head>
+<body onload="javascript: populateYear(); init();">
+
+	<form method="POST" action="." name="jumpHome" id="jumpHome">
+  		<input type=hidden name=command value=jumpHome>
+	</form>
+	<form method="POST" action="." name="logout" id="logout">
+  		<input type=hidden name=command value=logout>
+	</form>
+	<form name="jumpEdit" id="jumpEdit" method="POST" action=".">
+  		<input type=hidden name=command id=command value="jumpEdit">
+  		<input type=hidden name=customerAccountNumber id=customerAccountNumber value="$customerAccountNumber">
+	</form>
+	<form name="jumpHistory" id="jumpHistory" method="POST" action=".">
+  		<input type=hidden name=command id=command value="jumpHistory">
+  		<input type=hidden name=customerAccountNumber id=customerAccountNumber value="$customerAccountNumber">
+	</form>
+
+
+
+<section class="content">
+	<header class="header">
+		<p>Make a Payment</p>
+	</header>
+
+
+		<form action="." method="POST" id="doPayment" name="doPayment" onsubmit="return validateForm(this);">
+		<input type=hidden name=command id=command value='doPayment'>
+        <input type=hidden name=paymentMethod id=paymentMethod value='CREDITCARD'>
+        <input type=hidden name=billFirstName id=billFirstName value='$billFirstName'>
+        <input type=hidden name=billLastName id=billLastName value='$billLastName'>
+        <input type=hidden name=billAddress id=billAddress value='$billAddress'>
+        <input type=hidden name=billCity id=billCity value='$billCity'>
+        <input type=hidden name=billState id=billState value='$billState'>
+        <input type=hidden name=billZip id=billZip value='$billZip'>
+        <input type=hidden name=billPhone id=billPhone value='$billPhone'>
+        <input type=hidden name=billEmail id=billEmail value='$billEmail'>
+        <input type=hidden name=customerAccountNumber id=customerAccountNumber value='$customerAccountNumber'>
+        <input type=hidden name=branchNumber id=branchNumber value='$branchNumber'>
+		
+
+
+		<table class="tableFormat">
+			<thead class="tableHeading">
+				<tr>
+					<td colspan="2"><img src="img/cclogo.png"></td>
+				</tr>
+			</thead>
+			<tbody class="tableBody">
+				<tr>
+					<td><p class="tableText">Amount: $</p></td>
+					<td><input type="text" id="paymentAmount" name="paymentAmount" maxlength="7"></td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align:center"><button type="button" class="buttonLong">Get your Card Details by using your Camera</button></td>
+				</tr>
+				<tr>
+					<td><p class="tableText">Card Number</p></td>
+					<td>
+						<span id="newCardSpan">
+							
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td><p class="tableText">Expiration</p></td>
+					<td>
+						<select id="expireMonth" name="expireMonth">
+							<option id="month" value="null">Mo</option>
+							<option id="01" value="01">01</option>
+							<option id="02" value="02">02</option>
+							<option id="03" value="03">03</option>
+							<option id="04" value="04">04</option>
+							<option id="05" value="05">05</option>
+							<option id="06" value="06">06</option>
+							<option id="07" value="07">07</option>
+							<option id="08" value="08">08</option>
+							<option id="09" value="09">09</option>
+							<option id="10" value="10">10</option>
+							<option id="11" value="11">11</option>
+							<option id="12" value="12">12</option>
+						</select>
+
+						<select id="expireYear" name="expireYear">
+							
+						</select>
+					
+				</tr>
+				<tr>
+					<td><p class="tableText">CVV</p></td>
+					<td><input type="text" id="cvvCode" name="cvvCode" maxlength="4"></td>
+				</tr>
+			</tbody>
+			<tbody class="tableBodySpecial">
+				<tr id="saveCardBox">
+					<td colspan="2" class="rowCenter"><p class="copyright"><input type="checkbox" name="saveInfo" id="saveInfo" value="1"><label for="saveInfo">Save my card info.</label></p></td>
+				</tr>
+				<tr>
+					<td colspan="2"><p class="copyright"><input type="checkbox" name="iAgree" id="iAgree"><label for="iAgree">I agree that the amount shown above will be billed to my credit card by "Books Are Fun".</label></p></td>
+				</tr>
+			</tbody>
+			<tfoot class="tableFooter">
+				<tr>
+					<td colspan="2"><button type="submit" id="Submit1">Process Payment</button></td>
+				</tr>
+			</tfoot>
+		</table>
+		</form>
+	
+
+
+
+	<footer class="footer">
+		<a href="javascript:document.forms['jumpHome'].submit()" class="icon" id="iconHome"></a>
+		<a href="javascript:document.forms['jumpHistory'].submit()" class="icon" id="iconHistory"></a>
+		<a href="javascript:document.forms['jumpEdit'].submit()" class="icon" id="iconAccount"></a>
+		<a href="javascript:document.forms['logout'].submit()" class="icon" id="iconLogout"></a>
+	</footer>
+</section>	
+
+
+
+
+
+</body>
+</html>

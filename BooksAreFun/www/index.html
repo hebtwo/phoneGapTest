@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Books are Fun mobile app</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+
+	<script type="text/javascript" language="javaScript" src="https://www.secured-server.biz/scripts/validation.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+
+function validateForm(theForm) {	
+	if(!Valid(theForm.username,"Username",3,80,"true",alphaNumeric,alphaNumericDesc)){ return false; }
+	if(!Valid(theForm.password,"Password",1,24,"true",alphaNumeric,alphaNumericDesc)){ return false; }
+}
+
+//-->
+</script>
+
+</head>
+<body>
+
+	<form name="jumpSignup" id="jumpSignup" method="POST" action=".">
+  		<input type=hidden name=command id=command value="jumpSignup">
+	</form>
+	<form name="jumpForgot" id="jumpForgot" method="POST" action=".">
+  		<input type=hidden name=command id=command value="jumpForgot">
+	</form>
+
+
+		
+
+	<section class="content">
+		<img class="logo" src="img/logo.png">
+	
+		<form method="POST" onsubmit="return validateForm(this)" class="formFormat" >
+		
+			<table class="tableLogin">
+				<tbody class="tableLoginBody">
+					<tr>
+						<td>
+							<p class="regularText">Username:</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="text" type="text" name="username">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p class="regularText">Password:</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="text" type="password" name="password">
+						</td>
+					</tr>
+					<tr>
+						<td class="rowCenter">
+							<p><button type="submit">Sign in</button></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="rowCenter">
+							<p>
+								<input type="checkbox">
+								<span class="regularText">Remember me?</span>
+								
+							</p>
+						</td>
+					</tr>
+					
+				</tbody>
+
+
+			</table>		
+		</form>
+
+	<footer>
+		<p><a href="javascript:document.forms['jumpSignup'].submit()">Sign Up / Create A Profile</a></p>
+		<p><a href="javascript:document.forms['jumpForgot'].submit()">Forgot Password?</a></p>
+		<p><a href="payment.html">Payment shortcut</a> | <a href="cardio.html">Card.io shortcut</a> | <a href="create-account.html">Create account shortcut</a></p>	
+		<p><a href="history.html">History shortcut</a> | <a href="payment-approved.html">Approved shortcut</a> | <a href="payment-declined.html">Declined shortcut</a></p>	
+		
+	</footer>
+
+
+	</section>
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
